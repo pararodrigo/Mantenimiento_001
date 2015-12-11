@@ -1,0 +1,73 @@
+﻿@model Mantenimiento_001.Models.user
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<div class="form-horizontal cabecera2">
+    <h2>Dar de alta nuevo personal</h2>
+    <p class="pull-right">
+        <button class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Personal", "Personal")'">Listado de Personal </button>
+    </p>
+
+</div>
+@using (Html.BeginForm(null,null,FormMethod.Post, new { id = "personalForm"}))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Personal</div>
+        <div class="panel-body">
+
+            <div class="form-group">
+
+                <div class="col-md-4">
+                    <label>Nombre:</label>
+                    @Html.EditorFor(model => model.users_name, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                <div class="col-md-4">
+                    <label> Primer Apellido</label>
+                    @Html.EditorFor(model => model.users_fname, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                <div class="col-md-4">
+                    <label>Segundo Apellido</label>
+                    @Html.EditorFor(model => model.users_lname, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-md-4">
+                    <label>Alias</label>
+                    @Html.EditorFor(model => model.users_alias, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+                <div class="col-md-4">
+                    <label>Puesto</label>
+                    @Html.DropDownList("roll", new SelectList(ViewBag.roll, "roll_id", "roll_name"), new { @class = "form-control" })
+
+                </div>
+            </div>
+
+
+
+            <div class="modal-footer">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                    <button type="button" class="btn btn-default " onclick="location.href='@Url.Action("Personal", "Personal")'">Cancelar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+

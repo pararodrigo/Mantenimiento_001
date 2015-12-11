@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mantenimientoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="prueba">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.rolls' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="rolls">
+    <Key>
+      <PropertyRef Name="roll_id" />
+    </Key>
+    <Property Name="roll_id" Type="int" Nullable="false" />
+    <Property Name="roll_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_fname" Type="varchar" MaxLength="50" />
+    <Property Name="user_lname" Type="varchar" MaxLength="50" />
+    <Property Name="user_alias" Type="varchar" MaxLength="50" />
+    <Property Name="user_password" Type="varchar" MaxLength="50" />
+    <Property Name="roll_id" Type="int" />
+    <Property Name="act" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="mantenimientoModelStoreContainer">
+    <EntitySet Name="prueba" EntityType="Self.prueba" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rolls" EntityType="Self.rolls" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [rolls].[roll_id] AS [roll_id], 
+    [rolls].[roll_name] AS [roll_name]
+    FROM [dbo].[rolls] AS [rolls]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="user" EntityType="Self.user" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [user].[user_id] AS [user_id], 
+    [user].[user_name] AS [user_name], 
+    [user].[user_fname] AS [user_fname], 
+    [user].[user_lname] AS [user_lname], 
+    [user].[user_alias] AS [user_alias], 
+    [user].[user_password] AS [user_password], 
+    [user].[roll_id] AS [roll_id], 
+    [user].[act] AS [act]
+    FROM [dbo].[user] AS [user]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

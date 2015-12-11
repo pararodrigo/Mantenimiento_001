@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mantenimientoModelStoreContainer" CdmEntityContainer="databaseEntities">
+    <EntitySetMapping Name="rolls">
+      <EntityTypeMapping TypeName="mantenimientoModel.roll">
+        <MappingFragment StoreEntitySet="roll">
+          <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+          <ScalarProperty Name="roll_name" ColumnName="roll_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="mantenimientoModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="users_id" ColumnName="users_id" />
+          <ScalarProperty Name="users_name" ColumnName="users_name" />
+          <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+          <ScalarProperty Name="users_lname" ColumnName="users_lname" />
+          <ScalarProperty Name="users_alias" ColumnName="users_alias" />
+          <ScalarProperty Name="users_password" ColumnName="users_password" />
+          <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+          <ScalarProperty Name="act" ColumnName="act" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estadoes">
+      <EntityTypeMapping TypeName="mantenimientoModel.estado">
+        <MappingFragment StoreEntitySet="estado">
+          <ScalarProperty Name="estado_name" ColumnName="estado_name" />
+          <ScalarProperty Name="estado_id" ColumnName="estado_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="inc_type">
+      <EntityTypeMapping TypeName="mantenimientoModel.inc_type">
+        <MappingFragment StoreEntitySet="inc_type">
+          <ScalarProperty Name="ty_name" ColumnName="ty_name" />
+          <ScalarProperty Name="ty_id" ColumnName="ty_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="incidencias">
+      <EntityTypeMapping TypeName="mantenimientoModel.incidencia">
+        <MappingFragment StoreEntitySet="incidencia">
+          <ScalarProperty Name="estado_id" ColumnName="estado_id" />
+          <ScalarProperty Name="coment" ColumnName="coment" />
+          <ScalarProperty Name="f_user" ColumnName="f_user" />
+          <ScalarProperty Name="s_user" ColumnName="s_user" />
+          <ScalarProperty Name="f_date" ColumnName="f_date" />
+          <ScalarProperty Name="s_date" ColumnName="s_date" />
+          <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+          <ScalarProperty Name="ty_id" ColumnName="ty_id" />
+          <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+          <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maquinas">
+      <EntityTypeMapping TypeName="mantenimientoModel.maquina">
+        <MappingFragment StoreEntitySet="maquina">
+          <ScalarProperty Name="maq_name" ColumnName="maq_name" />
+          <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="priorities">
+      <EntityTypeMapping TypeName="mantenimientoModel.priority">
+        <MappingFragment StoreEntitySet="priority">
+          <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+          <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="mantenimientoModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tecnicos">
+      <EntityTypeMapping TypeName="mantenimientoModel.tecnico">
+        <MappingFragment StoreEntitySet="tecnicos">
+          <ScalarProperty Name="users_id" ColumnName="users_id" />
+          <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+          <ScalarProperty Name="tec_id" ColumnName="tec_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="archivos">
+      <EntityTypeMapping TypeName="mantenimientoModel.archivo">
+        <MappingFragment StoreEntitySet="archivos">
+          <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+          <ScalarProperty Name="file_coment" ColumnName="file_coment" />
+          <ScalarProperty Name="file" ColumnName="file" />
+          <ScalarProperty Name="file_ext" ColumnName="file_ext" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="file_id" ColumnName="file_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="incidencia_list">
+      <EntityTypeMapping TypeName="mantenimientoModel.incidencia_list">
+        <MappingFragment StoreEntitySet="incidencia_list">
+          <ScalarProperty Name="usersf_fname" ColumnName="usersf_fname" />
+          <ScalarProperty Name="usersf_name" ColumnName="usersf_name" />
+          <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+          <ScalarProperty Name="users_name" ColumnName="users_name" />
+          <ScalarProperty Name="estado_name" ColumnName="estado_name" />
+          <ScalarProperty Name="coment" ColumnName="coment" />
+          <ScalarProperty Name="f_date" ColumnName="f_date" />
+          <ScalarProperty Name="s_date" ColumnName="s_date" />
+          <ScalarProperty Name="maq_name" ColumnName="maq_name" />
+          <ScalarProperty Name="ty_name" ColumnName="ty_name" />
+          <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+          <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users_list">
+      <EntityTypeMapping TypeName="mantenimientoModel.users_list">
+        <MappingFragment StoreEntitySet="users_list">
+          <ScalarProperty Name="act" ColumnName="act" />
+          <ScalarProperty Name="roll_name" ColumnName="roll_name" />
+          <ScalarProperty Name="users_password" ColumnName="users_password" />
+          <ScalarProperty Name="users_alias" ColumnName="users_alias" />
+          <ScalarProperty Name="users_lname" ColumnName="users_lname" />
+          <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+          <ScalarProperty Name="users_name" ColumnName="users_name" />
+          <ScalarProperty Name="users_id" ColumnName="users_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

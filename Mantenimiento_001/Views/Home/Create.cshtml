@@ -1,0 +1,65 @@
+﻿@model Mantenimiento_001.Models.incidencia
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal cabecera2">
+
+    <h2>Nueva Incidencia</h2>
+    <p class="pull-right">
+        <button type="button" class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Home", "Home")'">Lista de incidencias </button>
+    </p>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">Incidencia</div>
+    <div class="panel-body">
+        <form method="post">
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label>Prioridad</label>
+                        @Html.DropDownList("priority", new SelectList(ViewBag.priority, "priority_id", "priority_name"), new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Tipo de incidencia</label>
+                        @Html.DropDownList("type", new SelectList(ViewBag.type, "ty_id", "ty_name"), new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4">
+                        <label>Maquina</label>
+                        @Html.DropDownList("maquina", new SelectList(ViewBag.maquina, "maq_id", "maq_name"), new { @class = "form-control" })
+
+
+                    </div>
+
+                </div>
+
+
+                <!--En este imput esta el id de la sesion de usuario-->
+                <input type="hidden" name="user_s" value="@ViewBag.user.users_id" />
+
+
+
+
+                <div class="form-group">
+
+                    <div class="col-md-10">
+                        <label>Comentarios</label>
+                        <textarea name="comentarios" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                        <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("Home", "Home")'">Cancelar </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>

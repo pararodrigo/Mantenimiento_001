@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Mantenimiento_001.Models.maquina>
+
+@{
+    ViewBag.Title = "Maquinaria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal cabecera">
+
+<h2>Maquinaria</h2>
+
+<p>
+@if (ViewBag.user.roll_id == 1)
+{
+    <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Create", "Maquinaria")'">Nueva Maquina </button>
+}
+</p>
+</div> 
+<hr />
+<table class="table" id="maquinaria">
+    <thead>
+        <tr>
+            <th>Id:</th>
+            <th>Identificador</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.maq_id)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.maq_name)
+                </td>
+                <td>
+                    @if (ViewBag.user.roll_id == 1){
+                        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Maquinaria",new { id = item.maq_id })'">Eliminar </button>
+                    }
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

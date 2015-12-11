@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mantenimientoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.user_list' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="user_list">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_fname" Type="varchar" MaxLength="50" />
+    <Property Name="user_lname" Type="varchar" MaxLength="50" />
+    <Property Name="user_alias" Type="varchar" MaxLength="50" />
+    <Property Name="user_password" Type="varchar" MaxLength="50" />
+    <Property Name="roll_name" Type="varchar" MaxLength="50" />
+    <Property Name="act" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="mantenimientoModelStoreContainer">
+    <EntitySet Name="user_list" EntityType="Self.user_list" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [user_list].[user_id] AS [user_id], 
+    [user_list].[user_name] AS [user_name], 
+    [user_list].[user_fname] AS [user_fname], 
+    [user_list].[user_lname] AS [user_lname], 
+    [user_list].[user_alias] AS [user_alias], 
+    [user_list].[user_password] AS [user_password], 
+    [user_list].[roll_name] AS [roll_name], 
+    [user_list].[act] AS [act]
+    FROM [dbo].[user_list] AS [user_list]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

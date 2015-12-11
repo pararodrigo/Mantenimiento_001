@@ -1,0 +1,308 @@
+﻿@model Mantenimiento_001.Models.incidencia
+
+@{
+    ViewBag.Title = "Edit";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal cabecera">
+    <h2>Incidencia</h2>
+
+    <p class="pull-right ">
+        @if (Model.estado_id != 3)
+        {
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCerrarIncidencia">Cerrar incidencia</button>
+        }
+        <button class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Home", "Home")'">Lista de incidencias </button>
+
+    </p>
+
+    <h4>id: @Model.inc_id</h4>
+</div>
+
+<div class="form-horizontal ">
+
+    <!--Panel informacion incidencia-->
+    <div class="col-md-12 alpha ">
+        <div class="panel  panel-primary">
+            <div class="panel-heading">
+                Evolucion de las incidencias:
+                @if (Model.estado_id != 3)
+                {
+                    <button class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#editIncidencia">Modificar</button>
+
+                }
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body grande">
+                <div class="form-horizontal">
+                    <div class="col-md-6"><strong>Fecha: </strong> @Model.s_date</div>
+                    <div class="col-md-6"><strong>Fecha en Proceso: </strong> @Model.p_date</div>
+
+                </div>
+                <div class="form-horizontal">
+                <div class="col-md-6"><strong>Dada de alta por: </strong>@ViewBag.incidenciaInList.users_name</div>
+                <div class="col-md-6"><strong>Prioridad: </strong>@ViewBag.incidenciaInList.priority_name</div>
+
+                </div>
+                <div class="form-horizontal">
+                <div class="col-md-6"><strong>Tipo de incidencia: </strong>@ViewBag.incidenciaInList.ty_name</div>
+                <div class="col-md-6"><strong>Maquina: </strong>@ViewBag.incidenciaInList.maq_name</div>
+
+                </div>
+                <div class="form-horizontal">
+
+                <div class="col-md-12"><strong>Estado: </strong>@ViewBag.incidenciaInList.estado_name</div>
+                </div>
+                <div class="form-horizontal">
+                    <div class="col-md-12"><strong>Comentarios:</strong>@Model.coment </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+        </div>
+    </div>
+    <!-- /.panel -->
+    <!--Panel Personal-->
+    <div class="col-md-12 alpha ">
+        <div class="panel  panel-primary">
+            <div class="panel-heading">
+                Personal:
+                @if (Model.estado_id != 3)
+                {
+                    <button class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#modalPersonal">Añadir Personal</button>
+                }
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Puesto</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="filesTable">
+                        @foreach (var tec in ViewBag.tecnicosList)
+                        {
+                            <tr>
+                                <td>@tec.users_id</td>
+                                <td>@tec.users_name</td>
+                                <td>@tec.users_fname @tec.users_lname</td>
+                                <td>@tec.roll_name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+        </div>
+    </div>
+    <!-- /.panel -->
+    <!--Panel documentos-->
+    <div class="col-md-12 alpha ">
+        <div class="panel  panel-primary">
+            <div class="panel-heading">
+                Documentos:
+                @if (Model.estado_id != 3)
+                {
+                    <button class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#modalFile">Añadir Documento</button>
+                }
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Comentarios</th>
+                            <th>Archivo</th>
+                            <th>Descarga</th>
+                        </tr>
+                    </thead>
+                    <tbody class="filesTable">
+                        @foreach (var file in ViewBag.archivos)
+                        {
+                            <tr>
+                                <td>@file.file_id</td>
+                                <td>@file.file_name</td>
+                                <td>@file.file_ext</td>
+                                <td>@file.file_coment</td>
+                                <td>@file.file</td>
+                                <td>@Html.ActionLink("Download", "Download", "Home", new { id = file.file_id }, null); </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+        </div>
+    </div>
+    <!-- /.panel -->
+
+</div>
+
+
+
+
+<!-- Vetana modal para añadir documentos y videos -->
+<div class="modal fade" id="modalFile">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Añadir archivo</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/EditFile" enctype="multipart/form-data" method="post">
+
+                    <input type="hidden" name="inc_id" value="@Model.inc_id" />
+
+                    <div class="form-group">
+
+                        <input type="file" class="file" name="file" id="addFile" title="Seleccione archivo">
+                    </div>
+                    <div class="form-group">
+                        <label>Comentarios</label>
+                        <textarea type="text" class="form-control" name="file_coment" placeholder="Comentarios"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Vetana modal para añadir personal -->
+<div class="modal fade" id="modalPersonal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Añadir Personal</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/EditPersonal" enctype="multipart/form-data" method="post">
+
+                    <input type="hidden" name="inc_id" value="@Model.inc_id" />
+
+
+                    <div class="form-group">
+
+                        <label>Añadir personal a la incidencia:</label>
+
+                        @Html.DropDownList("selector", new MultiSelectList(ViewBag.users, "users_id", "users_name", ViewBag.tecnicos), new { multiple = "multiple" })
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Vetana modal para modificar parametros -->
+<div class="modal fade" id="editIncidencia">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Editar Incidencia</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/EditIncidencia" enctype="multipart/form-data" method="post">
+
+                    <input type="hidden" name="inc_id" value="@Model.inc_id" />
+
+                    <div class="form-group" id="listaEdicion">
+
+                        <div class="col-md-4">
+                            <label>Prioridad</label>
+
+                            @Html.DropDownList("prioridad", new SelectList(ViewBag.priority, "priority_id", "priority_name", Model.priority_id), new { @class = "form-control" })
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <label>Maquina</label>
+
+                            @Html.DropDownList("maquinaSelect", new SelectList(ViewBag.maquina, "maq_id", "maq_name", Model.maq_id), new { @class = "form-control" })
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <label>Tipo de incidencia</label>
+                            @Html.DropDownList("tipo", new SelectList(ViewBag.type, "ty_id", "ty_name", Model.ty_id), new { @class = "form-control" })
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            <label>Comentarios</label>
+                            <textarea name="comentarios" class="form-control">@Model.coment</textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Vetana modal para cerrar incidencia -->
+<div class="modal fade" id="modalCerrarIncidencia">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Añadir archivo</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Home/cerrarIncidencia" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="inc_id" value="@Model.inc_id" />
+                    <input type="hidden" name="user_id" value="@ViewBag.user.users_id" />
+                    <label>
+                        <input type="radio" name="estado" value="3" id="reparado"> Reparado
+                    </label>
+
+                    <label>
+                        <input type="radio" name="estado" value="4" id="detenido"> Otro (Indicar en comentarios)
+                    </label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

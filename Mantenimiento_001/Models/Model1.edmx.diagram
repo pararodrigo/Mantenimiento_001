@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f3bf7dea2d849669c16baea736d16cf" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="mantenimientoModel.roll" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mantenimientoModel.estado" Width="1.5" PointX="6.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mantenimientoModel.inc_type" Width="1.5" PointX="2.75" PointY="4.5" />
+        <EntityTypeShape EntityType="mantenimientoModel.maquina" Width="1.5" PointX="4" PointY="6.875" />
+        <EntityTypeShape EntityType="mantenimientoModel.priority" Width="1.5" PointX="6.875" PointY="2.875" />
+        <EntityTypeShape EntityType="mantenimientoModel.sysdiagram" Width="1.5" PointX="11.75" PointY="6" />
+        <EntityTypeShape EntityType="mantenimientoModel.archivo" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mantenimientoModel.incidencia_list" Width="1.5" PointX="11.75" PointY="8.25" />
+        <EntityTypeShape EntityType="mantenimientoModel.totalTime" Width="1.5" PointX="4.25" PointY="10.25" />
+        <EntityTypeShape EntityType="mantenimientoModel.esperatime" Width="1.5" PointX="8.625" PointY="10.125" />
+        <EntityTypeShape EntityType="mantenimientoModel.reparacionTime" Width="1.5" PointX="6.5" PointY="10.25" />
+        <EntityTypeShape EntityType="mantenimientoModel.incidencia" Width="1.5" PointX="9.125" PointY="3.25" />
+        <EntityTypeShape EntityType="mantenimientoModel.tecnico" Width="1.5" PointX="11.375" PointY="0.75" />
+        <AssociationConnector Association="mantenimientoModel.FK_archivos_incidencia" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_estado" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_inc_type" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_maquina" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_priority" />
+        <AssociationConnector Association="mantenimientoModel.FK_tecnicos_incidencia" />
+        <EntityTypeShape EntityType="mantenimientoModel.user" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_users" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_users1" />
+        <AssociationConnector Association="mantenimientoModel.FK_incidencia_users2" />
+        <AssociationConnector Association="mantenimientoModel.FK_users_roll1" />
+        <AssociationConnector Association="mantenimientoModel.FK_tecnicos_users" />
+        <EntityTypeShape EntityType="mantenimientoModel.users_list" Width="1.5" PointX="0.75" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

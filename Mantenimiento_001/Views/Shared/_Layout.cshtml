@@ -1,0 +1,186 @@
+﻿@{
+
+
+    ViewBag.user = Session["user"];
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Application</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link rel="stylesheet" href="~/Content/clock.css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/img/centinela.png" height="50" id="logo" />
+
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav navbar-left hidden-md hidden-lg">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Incidencias", "Home", "Home")</li>
+                            <li>@Html.ActionLink("Personal", "Personal", "Personal")</li>
+                            <li>@Html.ActionLink("Maquinaria", "Maquinaria", "Maquinaria")</li>
+                            <li>@Html.ActionLink("Tipo de incidencia", "Tipo", "Tipo")</li>
+                            <li>@Html.ActionLink("Estadisticas", "Estadisticas", "Estadisticas", null, new { @class = "obtenerDatos" })</li>
+                            
+
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Incidencias", "Home", "Home")</li>
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Personal", "Personal", "Personal")</li>
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Maquinaria", "Maquinaria", "Maquinaria")</li>
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Tipo de incidencia", "Tipo", "Tipo")</li>
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Estadisticas", "Estadisticas", "Estadisticas", null, new { @class = "obtenerDatos" })</li>
+                    
+                    <li class="hidden-lg hidden-md hidden-sm">@Html.ActionLink("Log out", "Login", "Login")</li>
+                    <li class=" hidden-xs"><img src="~/img/photo.png" alt="imagen" height="50" class="img-circle"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@ViewBag.user.users_name @ViewBag.user.users_fname <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @*<li>@Html.ActionLink("Incidencias", "Home", "Home")</li>
+                                <li>@Html.ActionLink("Personal", "Personal", "Personal")</li>
+                                <li>@Html.ActionLink("Maquinaria", "Maquinaria", "Maquinaria")</li>
+                                <li>@Html.ActionLink("Tipo de incidencia", "Tipo", "Tipo")</li>
+                                <li>@Html.ActionLink("Estadisticas", "Estadisticas", "Estadisticas", null, new { @class = "obtenerDatos" })</li>
+                                <li role="separator" class="divider"></li>*@
+                            <li>@Html.ActionLink("Editar Perfil", "Edit", "Personal", new { id = ViewBag.user.users_id }, null)</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Log out", "Login", "Login")</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!--Barra lateral Menu-->
+    <div class="row">
+        <div class="gw-sidebar hidden-xs hidden-sm hidden-md  col-lg-2 ">
+            <div id="gw-sidebar" class="gw-sidebar col-md-2">
+
+                <div class="nano-content">
+                    <div id="clock"></div>
+                    <ul class="gw-nav gw-nav-list">
+
+                        <li>@Html.ActionLink("Incidencias", "Home", "Home", null, new { @class = "menuItem", id = "listaIncidencias" }) </li>
+                        <li>@Html.ActionLink("Personal", "Personal", "Personal", null, new { @class = "menuItem", id = "listaPersonal" })</li>
+                        <li>@Html.ActionLink("Maquinaria", "Maquinaria", "Maquinaria", null, new { @class = "menuItem", id = "listaMaquinas" })</li>
+                        <li>@Html.ActionLink("Tipos", "Tipo", "Tipo", null, new { @class = "menuItem", id = "litaTipos" })</li>
+                        <li> @Html.ActionLink("Estadisticas", "Estadisticas", "Estadisticas", null, new { id = "estadisticas", @class = "menuItem obtenerDatos" })</li>
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="gw-sidebar hidden-xs hidden-sm hidden-lg  col-md-1 ">
+            <ul>
+                <li class="col-md-1"><a href="/Home/Home"><img src="~/img/inciList.png" class="imagenMenu" /></a></li>
+                <li class="col-md-1"><a href="/Personal/Personal"><img src="~/img/personal.png" class="imagenMenu" /></a></li>
+                <li class="col-md-1"><a href="/Maquinaria/Maquinaria"><img src="~/img/maquina.png" class="imagenMenu" /></a></li>
+                <li class="col-md-1"><a href="/Tipo/Tipo"><img src="~/img/incType.png" class="imagenMenu" /></a></li>
+                <li class="col-md-1"><a href="/Estadisticas/Estadisticas" class="obtenerDatos"><img src="~/img/estadisticas.png" class="imagenMenu" /></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-sm-12 col-md-11 col-lg-10 col-md-offset-1 col-lg-offset-2 ">
+
+            <div class="container" id="contenido">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+    <footer class="col-md-10 col-md-offset-2">
+        <hr />
+        <p>&copy; Rodrigo Benito Duque</p>
+        <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    </footer>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/Validaciones/miValidacion.js"></script>
+    <script src="~/Scripts/Validaciones/messages_es.js"></script>
+    <script src="~/Scripts/Validaciones/formValidation.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Boostrap-fileInput.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery.multi-select.js"></script>
+    <script src="~/Scripts/raphael-min.js"></script>
+    <script src="~/Scripts/morris.js"></script>
+    <script src="~/Scripts/clock.js"></script>
+
+    @if (ViewBag.user.users_pass == null)
+    {
+        <script>
+            $(document).ready(function () {
+
+                $('#passwordAnterior').css('display', "none");
+                $('#returnEdit').css('display', "none");
+
+                $('#modalPassword').modal({
+                    show: true,
+                    backdrop: 'static',
+                    keyboard: false
+                })
+            });
+        </script>
+    }
+    else
+    {
+        if (ViewBag.Change == true)
+        {
+
+            <script>
+                $('#modalPassword').modal('show');
+                $('#returnLogin').css('display', "none");
+                $('#errorPassword').css('display', 'block');
+                //$('#passwordAnterior').change(function () {
+                //    $('#errorPassword').css('display', 'none');
+                //})
+            </script>
+        }
+        else
+        {
+            <script>
+                $('#returnLogin').css('display', "none");
+                $('#errorPassword').css('display', "none");
+            </script>
+        }
+    }
+
+
+    <script src="~/Scripts/Main.js"></script>
+
+
+
+
+
+
+</body>
+</html>

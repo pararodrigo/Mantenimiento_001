@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Mantenimiento_001.Models.incidencia_list>
+
+@{
+   // ViewBag.user = Session["user"];
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal cabecera">
+
+<h2>Ultimas Incidencias</h2>
+
+<p>
+     
+    <button class="btn btn-primary btn-sm " onclick="location.href='@Url.Action("Create", "Home")'">Nueva Incidencia </button>
+</p>
+    
+</div>
+<hr />
+<div class="form-horizontal">
+
+
+    <table class="table mitabla" id="incidenciasList">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th class="hidden-xs hidden-sm">
+                    Estado
+                </th>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Prioridad
+                </th>
+                <th class="hidden-xs">
+                    Tipo de Incidencia
+                </th>
+                <th>
+                    Maquina
+                </th>
+                <th class="hidden-xs">
+                    Fecha de alta
+                </th>
+                <th class="hidden-xs">
+                    Fecha de resolucion
+                </th>
+                <th class="hidden-xs hidden-sm">
+                    Dada de alta por
+                </th>
+                <th class="hidden-xs hidden-sm hidden-md">
+                    Reparacion firmada por
+                </th>
+                <!--Botones-->
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.estado_name == "Reparado")
+                        {
+                            <img src="~/img/green_light.png" style="height: 15px" />
+                        }
+                        else if (item.estado_name == "En espera...")
+                        {
+                            <img src="~/img/red_light.png" style="height: 15px" />
+                        }
+                        else if (item.estado_name == "En proceso...")
+                        {
+                            <img src="~/img/yellow_light.png" style="height: 15px" />
+                        }
+                        else if (item.estado_name == "Detenida")
+                        {
+                            <img src="~/img/black_light.png" style="height: 15px" />
+                        }
+
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+                        @Html.DisplayFor(modelItem => item.estado_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.inc_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.priority_name)
+                    </td>
+                    <td class="hidden-xs">
+                        @Html.DisplayFor(modelItem => item.ty_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.maq_name)
+                    </td>
+                    <td class="hidden-xs">
+                        @Html.DisplayFor(modelItem => item.s_date)
+                    </td>
+                    <td class="hidden-xs">
+                        @Html.DisplayFor(modelItem => item.f_date)
+                    </td>
+                    <td class="hidden-xs hidden-sm hidden-md">
+                        @item.users_name @item.users_fname
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+                        @item.usersf_name @item.usersf_fname
+                    </td>
+                    <td>
+                        @if (item.estado_name != "Reparado")
+                        {
+                            <button class="btn btn-primary btn-sm editar" onclick="location.href='@Url.Action("Edit", "Home", new { id = item.inc_id })'">Editar  </button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Edit", "Home",new { id = item.inc_id })'">Detalles</button>
+                        }
+                        @if (ViewBag.user.roll_id == 1)
+                        {
+                            <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Home",new { id = item.inc_id })'">Borrar</button>
+                        }
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

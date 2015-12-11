@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mantenimientoModelStoreContainer" CdmEntityContainer="db1_Entities">
+    <EntitySetMapping Name="pruebas">
+      <EntityTypeMapping TypeName="mantenimientoModel.prueba">
+        <MappingFragment StoreEntitySet="prueba">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rolls">
+      <EntityTypeMapping TypeName="mantenimientoModel.roll">
+        <MappingFragment StoreEntitySet="rolls">
+          <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+          <ScalarProperty Name="roll_name" ColumnName="roll_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="mantenimientoModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_fname" ColumnName="user_fname" />
+          <ScalarProperty Name="user_lname" ColumnName="user_lname" />
+          <ScalarProperty Name="user_alias" ColumnName="user_alias" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+          <ScalarProperty Name="act" ColumnName="act" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

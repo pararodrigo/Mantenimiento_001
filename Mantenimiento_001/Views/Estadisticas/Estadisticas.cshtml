@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Estadisticas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal cabecera">
+
+<h2>Estadisticas</h2>
+</div>
+<div class="row">
+    <!--reparadas-->
+    <div class="col-lg-3 col-md-3">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="reparadas"></div>
+                        <div>Reparadas</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--en porceso-->
+    <div class="col-lg-3 col-md-3">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="proceso"></div>
+                        <div>En Proceso</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--en espera-->
+    <div class="col-lg-3 col-md-3">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-shopping-cart fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="enEspera"></div>
+                        <div>En Espera</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--detenidas-->
+    <div class="col-lg-3 col-md-3">
+        <div class="panel panel-black">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge" id="detenidas"></div>
+                        <div>Detenidas</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--GRAFICOS-->
+<div class="row">
+    <div class=" col-md-4 col-lg-4">
+        <!--Tiempo de espera-->
+        <div class="panel  panel-default">
+            <div class="panel-heading">
+                Tiempo de espera:
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="text-center">
+                    <div class=" row"><img src="~/img/time.png" height="60" class="col-md-3 img-responsive" /> <h1 id="esperaTime" class="col-md-4 time"></h1></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Tiempo intervencion-->
+    <div class=" col-md-4 col-lg-4">
+        <div class="panel  panel-default">
+            <div class="panel-heading">
+                Tiempo de Intervencion:
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="text-center">
+                    <div class=" row"><img src="~/img/time.png" height="60" class="col-md-3 img-responsive" /> <h1 id="intervencionTime" class="col-md-4 time"></h1></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Tiempo reparacion-->
+    <div class=" col-md-4 col-lg-4">
+        <div class="panel  panel-default">
+            <div class="panel-heading">
+                Tiempo de reparacion:
+
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="text-center">
+                    <div class=" row"><img src="~/img/time.png" height="60" class="col-md-3 img-responsive"/> <h1 id="totalTime"  class="col-md-4 time"></h1></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-8 alpha ">
+        <div id="R42406530940083799" class="panel  panel-default">
+            <div class="panel-heading">
+                 Evolucion de las incidencias:
+             
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id="bar-chart"></div>
+            </div>
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+        </div>
+        <!-- /.panel -->
+    </div>
+
+    <div class="col-md-4 omega ">
+        <div id="R42364524333854915" class="panel  panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bar-chart-o fa-fw"></i> Porcentaje de incidencias por categoria:
+                <div class="pull-right">
+                    <div class="btn-group">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div id="donut"></div>
+
+            </div>
+            <!-- /.panel-body -->
+            <!-- /.panel-footer -->
+        </div>
+        <!-- /.panel -->
+    </div>
+</div>

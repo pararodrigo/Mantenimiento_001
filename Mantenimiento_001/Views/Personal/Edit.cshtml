@@ -1,0 +1,189 @@
+﻿@model Mantenimiento_001.Models.user
+
+@{
+
+    ViewBag.Title = "Edit";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="form-horizontal cabecera">
+    <h2>Editar Perfil</h2>
+    <p class="pull-right">
+
+        <button class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Personal", "Personal")'">Listado de Personal </button>
+
+    </p>
+    <h4> Id: @Model.users_id</h4>
+</div>
+<div class="form-horizontal ">
+    <div class="panel  panel-primary">
+        <div class="panel-heading">
+            Personal:
+            <button class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#modalEditPersonal">Editar</button>
+            <button class="btn btn-warning btn-xs pull-right" data-toggle="modal" data-target="#modalPassword">Cambiar Password</button>
+            @*<button class="btn btn-warning btn-xs pull-right" onclick="location.href='@Url.Action("Edit", "Personal",new { id = Model.users_id })'">Editar </button>*@
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body grande">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-horizontal">
+                        <div class="col-md-6"><strong>Nombre: </strong> @Model.users_name</div>
+                        <div class="col-md-6"><strong>Apellidos: </strong> @Model.users_fname @Model.users_lname</div>
+
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="col-md-6"><strong>Alias: </strong> @Model.users_alias</div>
+                        <div class="col-md-6"><strong>Puesto: </strong> @ViewBag.puesto.roll_name</div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="panel panel-default">
+
+                        <div class="panel-body">
+                            <img src="~/img/photo.png" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- /.panel-body -->
+    <!-- /.panel-footer -->
+</div>
+<!--Modal editar personal-->
+<div class="modal fade" id="modalEditPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Editar</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <form id="personalEditForm" action="/Personal/Edit" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="id" value="@Model.users_id" />
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.users_id)
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label>Nombre</label>
+                                @Html.EditorFor(model => model.users_name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.users_name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Primer Apellido</label>
+                                @Html.EditorFor(model => model.users_fname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.users_fname, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <label> Segundo Apellido</label>
+                                @Html.EditorFor(model => model.users_lname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.users_lname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <div class="col-md-8">
+                                <label>Alias</label>
+                                @Html.EditorFor(model => model.users_alias, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.users_alias, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-4">
+                                <label>Puesto</label>
+                                @Html.DropDownList("rollSelected", new SelectList(ViewBag.rollList, "roll_id", "roll_name", Model.roll_id), new { @class = "form-control" })
+
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                <label>Activo</label>
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.act, "", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.act, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Edit", "Personal",new { id = Model.users_id})'">Cancelar </button>
+                            <input type="submit" value="Guardar" class="btn btn-sm btn-primary" />
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--Ventana modal password-->
+<!-- Modal -->
+<div class="modal fade" id="modalPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" id="myModalLabel">Cambiar password</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Personal/EditPassword" enctype="multipart/form-data" method="post" id="passwordForm">
+                    <input type="hidden" name="id" value="@Model.users_id" id="idUsuario" />
+                    <p class="mensaje" id="errorPassword">La contaseña no coincide con la base de datos</p>
+                    <div class="form-horizontal">
+
+
+                        <div class="col-md-12" id="passwordAnterior">
+                            <label>Password anterior</label>
+                            <input type="password" name="users_password0" class="form-control" id="passwordViejo" />
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <label>Nuevo Password</label>
+                            <input type="password" name="users_password" id="passwordInput" class="form-control" required />
+
+
+                        </div>
+                        <div class="col-md-12">
+                            <label>Repita el nuevo Password</label>
+                            <input type="password" name="users_password2" class="form-control" />
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="returnLogin" class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Login", "Login")'">Cancelar </button>
+                        <button type="button" id="returnEdit" class="btn btn-default btn-sm" onclick="location.href='@Url.Action("Edit", "Personal",new { id = Model.users_id})'">Cancelar </button>
+                        <input type="submit" value="Guardar" class="btn btn-sm btn-primary" />
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

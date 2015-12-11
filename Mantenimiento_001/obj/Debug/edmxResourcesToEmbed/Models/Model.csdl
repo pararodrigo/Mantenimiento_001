@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mantenimientoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="user_list">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="roll_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="act" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="user_list" EntityType="Self.user_list" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,943 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mantenimientoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="archivos">
+          <Key>
+            <PropertyRef Name="file_id" />
+          </Key>
+          <Property Name="file_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="file_name" Type="varchar" MaxLength="50" />
+          <Property Name="file_ext" Type="varchar" MaxLength="10" />
+          <Property Name="file" Type="varbinary(max)" />
+          <Property Name="file_coment" Type="varchar(max)" />
+          <Property Name="inc_id" Type="int" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="estado_id" />
+          </Key>
+          <Property Name="estado_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="inc_type">
+          <Key>
+            <PropertyRef Name="ty_id" />
+          </Key>
+          <Property Name="ty_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ty_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="incidencia">
+          <Key>
+            <PropertyRef Name="inc_id" />
+          </Key>
+          <Property Name="inc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority_id" Type="int" />
+          <Property Name="ty_id" Type="int" />
+          <Property Name="maq_id" Type="int" />
+          <Property Name="s_date" Type="date" />
+          <Property Name="f_date" Type="date" />
+          <Property Name="s_user" Type="int" />
+          <Property Name="f_user" Type="int" />
+          <Property Name="coment" Type="varchar(max)" />
+          <Property Name="estado_id" Type="int" />
+          <Property Name="p_date" Type="date" />
+        </EntityType>
+        <EntityType Name="maquina">
+          <Key>
+            <PropertyRef Name="maq_id" />
+          </Key>
+          <Property Name="maq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="maq_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="priority">
+          <Key>
+            <PropertyRef Name="priority_id" />
+          </Key>
+          <Property Name="priority_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priority_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="roll">
+          <Key>
+            <PropertyRef Name="roll_id" />
+          </Key>
+          <Property Name="roll_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roll_name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tecnicos">
+          <Key>
+            <PropertyRef Name="tec_id" />
+          </Key>
+          <Property Name="tec_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inc_id" Type="int" />
+          <Property Name="users_id" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="users_name" Type="varchar" MaxLength="30" />
+          <Property Name="users_fname" Type="varchar" MaxLength="30" />
+          <Property Name="users_lname" Type="varchar" MaxLength="30" />
+          <Property Name="users_alias" Type="varchar" MaxLength="30" />
+          <Property Name="roll_id" Type="int" />
+          <Property Name="act" Type="bit" />
+          <Property Name="users_pass" Type="binary" MaxLength="16" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.esperatime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="esperatime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="int" Nullable="false" />
+          <Property Name="media" Type="varchar" MaxLength="17" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.incidencia_list' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="incidencia_list">
+          <Key>
+            <PropertyRef Name="inc_id" />
+          </Key>
+          <Property Name="inc_id" Type="int" Nullable="false" />
+          <Property Name="priority_name" Type="varchar" MaxLength="20" />
+          <Property Name="ty_name" Type="varchar" MaxLength="20" />
+          <Property Name="maq_name" Type="varchar" MaxLength="50" />
+          <Property Name="s_date" Type="date" />
+          <Property Name="f_date" Type="date" />
+          <Property Name="coment" Type="varchar(max)" />
+          <Property Name="estado_name" Type="varchar" MaxLength="50" />
+          <Property Name="users_name" Type="varchar" MaxLength="30" />
+          <Property Name="users_fname" Type="varchar" MaxLength="30" />
+          <Property Name="usersf_name" Type="varchar" MaxLength="30" />
+          <Property Name="usersf_fname" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.reparacionTime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="reparacionTime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="int" Nullable="false" />
+          <Property Name="media" Type="varchar" MaxLength="17" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.totalTime' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="totalTime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="int" Nullable="false" />
+          <Property Name="media" Type="varchar" MaxLength="17" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mantenimiento.dbo.users_list' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="users_list">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="int" Nullable="false" />
+          <Property Name="users_name" Type="varchar" MaxLength="30" />
+          <Property Name="users_fname" Type="varchar" MaxLength="30" />
+          <Property Name="users_lname" Type="varchar" MaxLength="30" />
+          <Property Name="users_alias" Type="varchar" MaxLength="30" />
+          <Property Name="roll_name" Type="varchar" MaxLength="30" />
+          <Property Name="act" Type="bit" />
+        </EntityType>
+        <Association Name="FK_archivos_incidencia">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="0..1" />
+          <End Role="archivos" Type="Self.archivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="inc_id" />
+            </Principal>
+            <Dependent Role="archivos">
+              <PropertyRef Name="inc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_estado">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="estado_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_inc_type">
+          <End Role="inc_type" Type="Self.inc_type" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inc_type">
+              <PropertyRef Name="ty_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="ty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_maquina">
+          <End Role="maquina" Type="Self.maquina" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maquina">
+              <PropertyRef Name="maq_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="maq_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_priority">
+          <End Role="priority" Type="Self.priority" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priority">
+              <PropertyRef Name="priority_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="priority_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="s_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="s_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_users2">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="f_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tecnicos_incidencia">
+          <End Role="incidencia" Type="Self.incidencia" Multiplicity="0..1" />
+          <End Role="tecnicos" Type="Self.tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="inc_id" />
+            </Principal>
+            <Dependent Role="tecnicos">
+              <PropertyRef Name="inc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tecnicos_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="tecnicos" Type="Self.tecnicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="tecnicos">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_roll1">
+          <End Role="roll" Type="Self.roll" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roll">
+              <PropertyRef Name="roll_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="roll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mantenimientoModelStoreContainer">
+          <EntitySet Name="archivos" EntityType="Self.archivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inc_type" EntityType="Self.inc_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="incidencia" EntityType="Self.incidencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maquina" EntityType="Self.maquina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="priority" EntityType="Self.priority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roll" EntityType="Self.roll" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tecnicos" EntityType="Self.tecnicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="esperatime" EntityType="Self.esperatime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [esperatime].[key] AS [key], 
+    [esperatime].[media] AS [media]
+    FROM [dbo].[esperatime] AS [esperatime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="incidencia_list" EntityType="Self.incidencia_list" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [incidencia_list].[inc_id] AS [inc_id], 
+    [incidencia_list].[priority_name] AS [priority_name], 
+    [incidencia_list].[ty_name] AS [ty_name], 
+    [incidencia_list].[maq_name] AS [maq_name], 
+    [incidencia_list].[s_date] AS [s_date], 
+    [incidencia_list].[f_date] AS [f_date], 
+    [incidencia_list].[coment] AS [coment], 
+    [incidencia_list].[estado_name] AS [estado_name], 
+    [incidencia_list].[users_name] AS [users_name], 
+    [incidencia_list].[users_fname] AS [users_fname], 
+    [incidencia_list].[usersf_name] AS [usersf_name], 
+    [incidencia_list].[usersf_fname] AS [usersf_fname]
+    FROM [dbo].[incidencia_list] AS [incidencia_list]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="reparacionTime" EntityType="Self.reparacionTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [reparacionTime].[key] AS [key], 
+    [reparacionTime].[media] AS [media]
+    FROM [dbo].[reparacionTime] AS [reparacionTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="totalTime" EntityType="Self.totalTime" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [totalTime].[key] AS [key], 
+    [totalTime].[media] AS [media]
+    FROM [dbo].[totalTime] AS [totalTime]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="users_list" EntityType="Self.users_list" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [users_list].[users_id] AS [users_id], 
+    [users_list].[users_name] AS [users_name], 
+    [users_list].[users_fname] AS [users_fname], 
+    [users_list].[users_lname] AS [users_lname], 
+    [users_list].[users_alias] AS [users_alias], 
+    [users_list].[roll_name] AS [roll_name], 
+    [users_list].[act] AS [act]
+    FROM [dbo].[users_list] AS [users_list]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_archivos_incidencia" Association="Self.FK_archivos_incidencia">
+            <End Role="incidencia" EntitySet="incidencia" />
+            <End Role="archivos" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_estado" Association="Self.FK_incidencia_estado">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_inc_type" Association="Self.FK_incidencia_inc_type">
+            <End Role="inc_type" EntitySet="inc_type" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_maquina" Association="Self.FK_incidencia_maquina">
+            <End Role="maquina" EntitySet="maquina" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_priority" Association="Self.FK_incidencia_priority">
+            <End Role="priority" EntitySet="priority" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_users" Association="Self.FK_incidencia_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_users1" Association="Self.FK_incidencia_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_users2" Association="Self.FK_incidencia_users2">
+            <End Role="users" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tecnicos_incidencia" Association="Self.FK_tecnicos_incidencia">
+            <End Role="incidencia" EntitySet="incidencia" />
+            <End Role="tecnicos" EntitySet="tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tecnicos_users" Association="Self.FK_tecnicos_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="tecnicos" EntitySet="tecnicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roll1" Association="Self.FK_users_roll1">
+            <End Role="roll" EntitySet="roll" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mantenimientoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="roll">
+          <Key>
+            <PropertyRef Name="roll_id" />
+          </Key>
+          <Property Name="roll_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roll_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="mantenimientoModel.FK_users_roll1" FromRole="roll" ToRole="user" />
+        </EntityType>
+        <EntityContainer Name="databaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="rolls" EntityType="Self.roll" />
+          <EntitySet Name="estadoes" EntityType="mantenimientoModel.estado" />
+          <EntitySet Name="inc_type" EntityType="mantenimientoModel.inc_type" />
+          <EntitySet Name="maquinas" EntityType="mantenimientoModel.maquina" />
+          <EntitySet Name="priorities" EntityType="mantenimientoModel.priority" />
+          <EntitySet Name="sysdiagrams" EntityType="mantenimientoModel.sysdiagram" />
+          <EntitySet Name="archivos" EntityType="mantenimientoModel.archivo" />
+          <EntitySet Name="incidencia_list" EntityType="mantenimientoModel.incidencia_list" />
+          <EntitySet Name="totalTime" EntityType="mantenimientoModel.totalTime" />
+          <EntitySet Name="esperatime" EntityType="mantenimientoModel.esperatime" />
+          <EntitySet Name="reparacionTime" EntityType="mantenimientoModel.reparacionTime" />
+          <EntitySet Name="incidencias" EntityType="mantenimientoModel.incidencia" />
+          <EntitySet Name="tecnicos" EntityType="mantenimientoModel.tecnico" />
+          <AssociationSet Name="FK_archivos_incidencia" Association="mantenimientoModel.FK_archivos_incidencia">
+            <End Role="incidencia" EntitySet="incidencias" />
+            <End Role="archivo" EntitySet="archivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_estado" Association="mantenimientoModel.FK_incidencia_estado">
+            <End Role="estado" EntitySet="estadoes" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_inc_type" Association="mantenimientoModel.FK_incidencia_inc_type">
+            <End Role="inc_type" EntitySet="inc_type" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_maquina" Association="mantenimientoModel.FK_incidencia_maquina">
+            <End Role="maquina" EntitySet="maquinas" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_priority" Association="mantenimientoModel.FK_incidencia_priority">
+            <End Role="priority" EntitySet="priorities" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tecnicos_incidencia" Association="mantenimientoModel.FK_tecnicos_incidencia">
+            <End Role="incidencia" EntitySet="incidencias" />
+            <End Role="tecnico" EntitySet="tecnicos" />
+          </AssociationSet>
+          <EntitySet Name="users" EntityType="mantenimientoModel.user" />
+          <AssociationSet Name="FK_incidencia_users" Association="mantenimientoModel.FK_incidencia_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_users1" Association="mantenimientoModel.FK_incidencia_users1">
+            <End Role="user" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_incidencia_users2" Association="mantenimientoModel.FK_incidencia_users2">
+            <End Role="user" EntitySet="users" />
+            <End Role="incidencia" EntitySet="incidencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_roll1" Association="mantenimientoModel.FK_users_roll1">
+            <End Role="roll" EntitySet="rolls" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tecnicos_users" Association="mantenimientoModel.FK_tecnicos_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="tecnico" EntitySet="tecnicos" />
+          </AssociationSet>
+          <EntitySet Name="users_list" EntityType="mantenimientoModel.users_list" />
+          </EntityContainer>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="estado_id" />
+          </Key>
+          <Property Name="estado_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="incidencias" Relationship="mantenimientoModel.FK_incidencia_estado" FromRole="estado" ToRole="incidencia" />
+        </EntityType>
+        <EntityType Name="inc_type">
+          <Key>
+            <PropertyRef Name="ty_id" />
+          </Key>
+          <Property Name="ty_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ty_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="incidencias" Relationship="mantenimientoModel.FK_incidencia_inc_type" FromRole="inc_type" ToRole="incidencia" />
+        </EntityType>
+        <EntityType Name="maquina">
+          <Key>
+            <PropertyRef Name="maq_id" />
+          </Key>
+          <Property Name="maq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="maq_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="incidencias" Relationship="mantenimientoModel.FK_incidencia_maquina" FromRole="maquina" ToRole="incidencia" />
+        </EntityType>
+        <EntityType Name="priority">
+          <Key>
+            <PropertyRef Name="priority_id" />
+          </Key>
+          <Property Name="priority_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="incidencias" Relationship="mantenimientoModel.FK_incidencia_priority" FromRole="priority" ToRole="incidencia" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="archivo">
+          <Key>
+            <PropertyRef Name="file_id" />
+          </Key>
+          <Property Name="file_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="file_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="file_ext" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="file" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="file_coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="inc_id" Type="Int32" />
+          <NavigationProperty Name="incidencia" Relationship="mantenimientoModel.FK_archivos_incidencia" FromRole="archivo" ToRole="incidencia" />
+        </EntityType>
+        <EntityType Name="incidencia_list">
+          <Key>
+            <PropertyRef Name="inc_id" />
+          </Key>
+          <Property Name="inc_id" Type="Int32" Nullable="false" />
+          <Property Name="priority_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ty_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="maq_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="s_date" Type="DateTime" Precision="0" />
+          <Property Name="f_date" Type="DateTime" Precision="0" />
+          <Property Name="coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="estado_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="users_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usersf_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usersf_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="totalTime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="Int32" Nullable="false" />
+          <Property Name="media" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="esperatime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="Int32" Nullable="false" />
+          <Property Name="media" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="reparacionTime">
+          <Key>
+            <PropertyRef Name="key" />
+          </Key>
+          <Property Name="key" Type="Int32" Nullable="false" />
+          <Property Name="media" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="incidencia">
+          <Key>
+            <PropertyRef Name="inc_id" />
+          </Key>
+          <Property Name="inc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priority_id" Type="Int32" />
+          <Property Name="ty_id" Type="Int32" />
+          <Property Name="maq_id" Type="Int32" />
+          <Property Name="s_date" Type="DateTime" Precision="0" />
+          <Property Name="f_date" Type="DateTime" Precision="0" />
+          <Property Name="s_user" Type="Int32" />
+          <Property Name="f_user" Type="Int32" />
+          <Property Name="coment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="estado_id" Type="Int32" />
+          <Property Name="p_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="archivos" Relationship="mantenimientoModel.FK_archivos_incidencia" FromRole="incidencia" ToRole="archivo" />
+          <NavigationProperty Name="estado" Relationship="mantenimientoModel.FK_incidencia_estado" FromRole="incidencia" ToRole="estado" />
+          <NavigationProperty Name="inc_type" Relationship="mantenimientoModel.FK_incidencia_inc_type" FromRole="incidencia" ToRole="inc_type" />
+          <NavigationProperty Name="maquina" Relationship="mantenimientoModel.FK_incidencia_maquina" FromRole="incidencia" ToRole="maquina" />
+          <NavigationProperty Name="priority" Relationship="mantenimientoModel.FK_incidencia_priority" FromRole="incidencia" ToRole="priority" />
+          <NavigationProperty Name="tecnicos" Relationship="mantenimientoModel.FK_tecnicos_incidencia" FromRole="incidencia" ToRole="tecnico" />
+          <NavigationProperty Name="user" Relationship="mantenimientoModel.FK_incidencia_users" FromRole="incidencia" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="mantenimientoModel.FK_incidencia_users1" FromRole="incidencia" ToRole="user" />
+          <NavigationProperty Name="user2" Relationship="mantenimientoModel.FK_incidencia_users2" FromRole="incidencia" ToRole="user" />
+        </EntityType>
+        <EntityType Name="tecnico">
+          <Key>
+            <PropertyRef Name="tec_id" />
+          </Key>
+          <Property Name="tec_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inc_id" Type="Int32" />
+          <Property Name="users_id" Type="Int32" />
+          <NavigationProperty Name="incidencia" Relationship="mantenimientoModel.FK_tecnicos_incidencia" FromRole="tecnico" ToRole="incidencia" />
+          <NavigationProperty Name="user" Relationship="mantenimientoModel.FK_tecnicos_users" FromRole="tecnico" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_archivos_incidencia">
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.archivo" Role="archivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="inc_id" />
+            </Principal>
+            <Dependent Role="archivo">
+              <PropertyRef Name="inc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_estado">
+          <End Type="mantenimientoModel.estado" Role="estado" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="estado_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="estado_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_inc_type">
+          <End Type="mantenimientoModel.inc_type" Role="inc_type" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inc_type">
+              <PropertyRef Name="ty_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="ty_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_maquina">
+          <End Type="mantenimientoModel.maquina" Role="maquina" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maquina">
+              <PropertyRef Name="maq_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="maq_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_priority">
+          <End Type="mantenimientoModel.priority" Role="priority" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="priority">
+              <PropertyRef Name="priority_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="priority_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tecnicos_incidencia">
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.tecnico" Role="tecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="incidencia">
+              <PropertyRef Name="inc_id" />
+            </Principal>
+            <Dependent Role="tecnico">
+              <PropertyRef Name="inc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="users_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="roll_id" Type="Int32" />
+          <Property Name="act" Type="Boolean" />
+          <Property Name="users_pass" Type="Binary" MaxLength="16" FixedLength="true" />
+          <NavigationProperty Name="incidencias" Relationship="mantenimientoModel.FK_incidencia_users" FromRole="user" ToRole="incidencia" />
+          <NavigationProperty Name="incidencias1" Relationship="mantenimientoModel.FK_incidencia_users1" FromRole="user" ToRole="incidencia" />
+          <NavigationProperty Name="incidencias2" Relationship="mantenimientoModel.FK_incidencia_users2" FromRole="user" ToRole="incidencia" />
+          <NavigationProperty Name="roll" Relationship="mantenimientoModel.FK_users_roll1" FromRole="user" ToRole="roll" />
+          <NavigationProperty Name="tecnicos" Relationship="mantenimientoModel.FK_tecnicos_users" FromRole="user" ToRole="tecnico" />
+        </EntityType>
+        <Association Name="FK_incidencia_users">
+          <End Type="mantenimientoModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="s_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_users1">
+          <End Type="mantenimientoModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="s_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_incidencia_users2">
+          <End Type="mantenimientoModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.incidencia" Role="incidencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="incidencia">
+              <PropertyRef Name="f_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_roll1">
+          <End Type="mantenimientoModel.roll" Role="roll" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roll">
+              <PropertyRef Name="roll_id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="roll_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tecnicos_users">
+          <End Type="mantenimientoModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="mantenimientoModel.tecnico" Role="tecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="users_id" />
+            </Principal>
+            <Dependent Role="tecnico">
+              <PropertyRef Name="users_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="users_list">
+          <Key>
+            <PropertyRef Name="users_id" />
+          </Key>
+          <Property Name="users_id" Type="Int32" Nullable="false" />
+          <Property Name="users_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_fname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_lname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="users_alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="roll_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="act" Type="Boolean" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mantenimientoModelStoreContainer" CdmEntityContainer="databaseEntities">
+          <EntitySetMapping Name="rolls">
+            <EntityTypeMapping TypeName="mantenimientoModel.roll">
+              <MappingFragment StoreEntitySet="roll">
+                <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+                <ScalarProperty Name="roll_name" ColumnName="roll_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadoes">
+            <EntityTypeMapping TypeName="mantenimientoModel.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="estado_name" ColumnName="estado_name" />
+                <ScalarProperty Name="estado_id" ColumnName="estado_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inc_type">
+            <EntityTypeMapping TypeName="mantenimientoModel.inc_type">
+              <MappingFragment StoreEntitySet="inc_type">
+                <ScalarProperty Name="ty_name" ColumnName="ty_name" />
+                <ScalarProperty Name="ty_id" ColumnName="ty_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maquinas">
+            <EntityTypeMapping TypeName="mantenimientoModel.maquina">
+              <MappingFragment StoreEntitySet="maquina">
+                <ScalarProperty Name="maq_name" ColumnName="maq_name" />
+                <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="priorities">
+            <EntityTypeMapping TypeName="mantenimientoModel.priority">
+              <MappingFragment StoreEntitySet="priority">
+                <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+                <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="mantenimientoModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="archivos">
+            <EntityTypeMapping TypeName="mantenimientoModel.archivo">
+              <MappingFragment StoreEntitySet="archivos">
+                <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+                <ScalarProperty Name="file_coment" ColumnName="file_coment" />
+                <ScalarProperty Name="file" ColumnName="file" />
+                <ScalarProperty Name="file_ext" ColumnName="file_ext" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_id" ColumnName="file_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="incidencia_list">
+            <EntityTypeMapping TypeName="mantenimientoModel.incidencia_list">
+              <MappingFragment StoreEntitySet="incidencia_list">
+                <ScalarProperty Name="usersf_fname" ColumnName="usersf_fname" />
+                <ScalarProperty Name="usersf_name" ColumnName="usersf_name" />
+                <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+                <ScalarProperty Name="users_name" ColumnName="users_name" />
+                <ScalarProperty Name="estado_name" ColumnName="estado_name" />
+                <ScalarProperty Name="coment" ColumnName="coment" />
+                <ScalarProperty Name="f_date" ColumnName="f_date" />
+                <ScalarProperty Name="s_date" ColumnName="s_date" />
+                <ScalarProperty Name="maq_name" ColumnName="maq_name" />
+                <ScalarProperty Name="ty_name" ColumnName="ty_name" />
+                <ScalarProperty Name="priority_name" ColumnName="priority_name" />
+                <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="totalTime">
+            <EntityTypeMapping TypeName="mantenimientoModel.totalTime">
+              <MappingFragment StoreEntitySet="totalTime">
+                <ScalarProperty Name="media" ColumnName="media" />
+                <ScalarProperty Name="key" ColumnName="key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="esperatime">
+            <EntityTypeMapping TypeName="mantenimientoModel.esperatime">
+              <MappingFragment StoreEntitySet="esperatime">
+                <ScalarProperty Name="media" ColumnName="media" />
+                <ScalarProperty Name="key" ColumnName="key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reparacionTime">
+            <EntityTypeMapping TypeName="mantenimientoModel.reparacionTime">
+              <MappingFragment StoreEntitySet="reparacionTime">
+                <ScalarProperty Name="media" ColumnName="media" />
+                <ScalarProperty Name="key" ColumnName="key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="incidencias">
+            <EntityTypeMapping TypeName="mantenimientoModel.incidencia">
+              <MappingFragment StoreEntitySet="incidencia">
+                <ScalarProperty Name="p_date" ColumnName="p_date" />
+                <ScalarProperty Name="estado_id" ColumnName="estado_id" />
+                <ScalarProperty Name="coment" ColumnName="coment" />
+                <ScalarProperty Name="f_user" ColumnName="f_user" />
+                <ScalarProperty Name="s_user" ColumnName="s_user" />
+                <ScalarProperty Name="f_date" ColumnName="f_date" />
+                <ScalarProperty Name="s_date" ColumnName="s_date" />
+                <ScalarProperty Name="maq_id" ColumnName="maq_id" />
+                <ScalarProperty Name="ty_id" ColumnName="ty_id" />
+                <ScalarProperty Name="priority_id" ColumnName="priority_id" />
+                <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tecnicos">
+            <EntityTypeMapping TypeName="mantenimientoModel.tecnico">
+              <MappingFragment StoreEntitySet="tecnicos">
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+                <ScalarProperty Name="inc_id" ColumnName="inc_id" />
+                <ScalarProperty Name="tec_id" ColumnName="tec_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="mantenimientoModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="users_pass" ColumnName="users_pass" />
+                <ScalarProperty Name="act" ColumnName="act" />
+                <ScalarProperty Name="roll_id" ColumnName="roll_id" />
+                <ScalarProperty Name="users_alias" ColumnName="users_alias" />
+                <ScalarProperty Name="users_lname" ColumnName="users_lname" />
+                <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+                <ScalarProperty Name="users_name" ColumnName="users_name" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_list">
+            <EntityTypeMapping TypeName="mantenimientoModel.users_list">
+              <MappingFragment StoreEntitySet="users_list">
+                <ScalarProperty Name="act" ColumnName="act" />
+                <ScalarProperty Name="roll_name" ColumnName="roll_name" />
+                <ScalarProperty Name="users_alias" ColumnName="users_alias" />
+                <ScalarProperty Name="users_lname" ColumnName="users_lname" />
+                <ScalarProperty Name="users_fname" ColumnName="users_fname" />
+                <ScalarProperty Name="users_name" ColumnName="users_name" />
+                <ScalarProperty Name="users_id" ColumnName="users_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

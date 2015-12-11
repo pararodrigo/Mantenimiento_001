@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Mantenimiento_001.Models.inc_type>
+
+@{
+    ViewBag.Title = "Tipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal cabecera">
+
+    <h2>Tipo</h2>
+
+    <p>
+        @if (ViewBag.user.roll_id == 1)
+        {
+
+            <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Create", "Tipo")'">Nuevo tipo de incidencia </button>
+        }
+    </p>
+</div>
+<hr />
+<table class="table" id="tipos">
+    <thead>
+
+        <tr>
+            <th>
+                Id:
+            </th>
+            <th>
+                Tipo:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ty_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ty_name)
+                </td>
+                <td>
+                    @if (ViewBag.user.roll_id == 1)
+                    {
+                        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Tipo",new { id = item.ty_id })'">Eliminar </button>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

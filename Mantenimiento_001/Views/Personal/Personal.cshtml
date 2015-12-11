@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Mantenimiento_001.Models.users_list>
+
+@{
+    
+    ViewBag.Title = "Personal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(ViewBag.mensaje != null)
+{
+
+<div class="alert alert-danger" role="alert">
+    @ViewBag.mensaje
+</div>
+}
+<div class="form-horizontal cabecera">
+
+<h2>Personal</h2>
+
+<p>
+@if (ViewBag.user.roll_id == 1)
+{
+    <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Create", "Personal")'">Nuevo empleado </button>
+}
+</p>
+</div>
+<hr />
+<table class="table" id="personal">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellidos
+            </th>
+            <th class="hidden-xs">
+                Alias
+            </th>
+            <th class="hidden-xs">
+                Puesto
+            </th>
+    <!--Botones-->
+            <th></th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.users_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.users_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.users_fname) @Html.DisplayFor(modelItem => item.users_lname)
+                </td>
+
+                <td class="hidden-xs">
+                    @Html.DisplayFor(modelItem => item.users_alias)
+                </td>
+                <td class="hidden-xs">
+                    @Html.DisplayFor(modelItem => item.roll_name)
+                </td>
+            
+                
+                <td>
+    @if (ViewBag.user.roll_id == 1)
+                {
+        <button class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Edit", "Personal",new { id = item.users_id })'">Editar </button>
+        <button class="btn btn-danger btn-sm" onclick="location.href='@Url.Action("Delete", "Personal",new { id = item.users_id })'">Borrar </button>
+    
+    }
+    else
+    {
+        <button class="btn btn-warning btn-sm" onclick="location.href='@Url.Action("Details", "Personal",new { id = item.users_id })'">Detalles </button>
+    
+    }
+    </td>            
+               
+               
+
+           
+            </tr>
+        }
+    </tbody>
+</table>
